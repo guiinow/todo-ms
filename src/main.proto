@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package todo;
+
+import "modules/todo/proto/task.proto";
