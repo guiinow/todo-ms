@@ -32,14 +32,11 @@ Neste sistema, um determinado usuário poderá criar tarefas e gerir os estados 
 
 No presente board, será criado o backend do sistema de tarefas
 
-O projeto tem como objetivo familiarizar na prática o dev com as tecnologias usadas no Clubpetro
-
 Serão utilizadas as seguintes tecnologias:
 
  Nest.js
 
-Node (utilizamos geralmente no CP a v12.18.3). Porém para este projeto podemos usar a versão LTS do node
-
+Node (qualquer versão)
 Typescript
 
 Postgres
