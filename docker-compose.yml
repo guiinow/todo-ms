@@ -1,0 +1,34 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TYPEORM_HOST: db
+      TYPEORM_PORT: 5432
+      TYPEORM_USERNAME: guiinow
+      TYPEORM_PASSWORD: 123456
+      TYPEORM_DATABASE: tododb
+      TYPEORM_SYNCHRONIZE: 'true'
+      TYPEORM_LOGGING: 'false'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: guiinow
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: tododb
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
