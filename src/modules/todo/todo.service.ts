@@ -51,10 +51,6 @@ export class TodoService {
     return allTodos;
   }
 
-  async findOne(id: string) {
-    throw new Error('Method not implemented');
-  }
-
   async getOne(id: string): Promise<TodoEntity> {
 
     const todo = await this.todoRepository.findOne({where: {id: id}});

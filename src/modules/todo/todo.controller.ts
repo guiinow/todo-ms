@@ -45,7 +45,7 @@ export class TodoController {
   @ApiResponse({ status: 404, description: 'TODO não encontrado.' })
   @ApiParam({ name: 'id', description: 'ID do TODO' })
   findOne(@Param('id') id: string) {
-    return this.todoService.findOne(id);
+    return this.todoService.getOne(id);
   }
 
   @Patch(':id')

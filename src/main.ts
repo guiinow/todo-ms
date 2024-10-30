@@ -25,7 +25,7 @@ async function bootstrap() {
     .setContact(
       'Guilherme Ferreira',
       'https://github.com/guiinow/',
-      'guilherme.sobrinho@familiapires.com.br',
+      'guilherme.sobrinho@aluno.ufop.edu.br',
     )
     .build();
   const document = SwaggerModule.createDocument(app, config);
