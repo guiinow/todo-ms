@@ -1,13 +1,17 @@
-name: Run Tests
+name: Todo Microsservice
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./todo-ms
 
     steps:
       - name: Checkout repository
@@ -18,7 +22,6 @@ jobs:
         with:
           node-version: '18'
 
-  
       - name: Install pnpm
         run: npm install -g pnpm
 
@@ -26,12 +29,29 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local/share/pnpm/store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-pnpm-store-todoms-${{ hashFiles('todo-ms/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      
+            ${{ runner.os }}-pnpm-store-todoms-
+
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run Jest tests
-        run: pnpm test 
+      - name: Run ESLint
+        run: pnpm lint
+
+      - name: Run Jest Unit/Integration tests
+        run: pnpm test
+
+      - name: Run Jest e2e tests
+        run: pnpm test:e2e
+
+      - name: Run Jest test coverage
+        run: pnpm test:cov
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: todo-ms-test-results
+          path: |
+            ./todo-ms/coverage
+            ./todo-ms/test
