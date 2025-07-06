@@ -1,4 +1,4 @@
-name: Todo Microsservice
+name: todo-microsservice
 
 on:
   push:
@@ -9,10 +9,7 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./todo-ms
-
+   
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
